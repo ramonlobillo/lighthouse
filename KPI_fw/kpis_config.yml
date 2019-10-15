@@ -1,0 +1,6 @@
+accessOutput: # path of the output file for KPIs.
+  "data/access_kpis.txt"
+accessHeaders: # Columns for KPIs.
+  - "Date"
+  - "Interval"
+  - "Total GETs"
