@@ -1,6 +1,6 @@
 #!/bin/python
 import datetime,gzip,argparse,time, yaml
-import kpi,accessKpis
+from modules.accessKpi import accessKpi
 
 '''
 *****************
@@ -15,28 +15,29 @@ def main(logfile, period):
     '''
     Process access.log to generate KPI entry on file
     '''
-    
-    access_kpis= new accessKpis("kpis_config.yml",period,logfile)
 
+    access_kpis= accessKpi("kpis_config.yml",period,logfile)
     if len(access_kpis.getConsideredLog()) == 0:
-        print("No log lines found from %s to %s" % \
-            (limit.strftime("%Y-%m-%d %H:%M:%S.%f")))
+        print("No log lines found from %s to %s"                     \
+           %(access_kpis.getLimit().strftime("%Y-%m-%d %H:%M:%S.%f"),\
+             access_kpis.getNow().strftime("%Y-%m-%d %H:%M:%S.%f")))
         exit(1)
     else:
-        print("%s lines to process from %s. Interval: %s <-> %s " %(len(access_kpis.getConsideredLog()),logfile, \
+        print("%s lines to process from %s. Interval: %s <-> %s "\
+            %(len(access_kpis.getConsideredLog()),logfile,       \
             access_kpis.getLimit().strftime("%Y-%m-%d %H:%M:%S"),\
-            access_kpis.getNow.strftime("%Y-%m-%d %H:%M:%S")))
+            access_kpis.getNow().strftime("%Y-%m-%d %H:%M:%S")))
 
 
     access_kpis.setEntry()
     access_kpis.dumpEntry()
     del(access_kpis)
-        
+
 # END main()
 
-    
+
 if __name__ == '__main__':
-    
+
     start_time = time.time()
     parser = argparse.ArgumentParser()
     parser.add_argument('input_file', help='Input file should not be gzipped. Example: server.log')
