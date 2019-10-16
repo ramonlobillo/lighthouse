@@ -1,2 +1,2 @@
 # lighthouse
-ideas in python3
+ideas and prototypes in python3
