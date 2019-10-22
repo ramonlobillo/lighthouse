@@ -3,23 +3,15 @@ import re, string, os, datetime,yaml
 
 class kpi:
 
-    kpis_config=None
-    period=None
-    now=None
-    limit=None
-    outputfilepath=None
-    logfilepath=None
-    considered_log=None
-    dest_filename=None
-    headers=None
-    entry=None
-
     def __init__(self,kpis_config_filepath,period,logfilepath):
         '''
         Constructor of KPI class.
         '''
         self.period=period
         self.logfilepath=logfilepath
+        self.dest_filename = ""
+        self.headers = []
+        self.entry= []
 
         self.kpis_config=yaml.load(open(kpis_config_filepath))
 
@@ -80,7 +72,7 @@ class kpi:
         '''
         self.addHeader()
         output=open(self.dest_filename,'a+')
-        output.write(";".join(str(v) for v in self.entry))
+        output.write(";".join(map(str,self.entry)))
         output.write('\n')
         output.close()
     # END dumpEntry
