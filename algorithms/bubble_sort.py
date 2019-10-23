@@ -19,8 +19,8 @@ def bubble_sort(q) -> int:
             if i+1 < q[i+1] < i+3:
                 return True
 
-    if _check_caotic(q):
-        return "Too chaotic"
+    #if _check_caotic(q):
+    #    return "Too chaotic"
     result=0
     c_swaps=-1
     while (c_swaps != 0):
@@ -30,10 +30,8 @@ def bubble_sort(q) -> int:
                 _swap(q,i)
                 c_swaps += 1
                 result += 1
+    print(" ".join(map(str,q)))
     return(result)
-
-
-    pass
 # END bubble_sort
     
 
@@ -46,3 +44,4 @@ if __name__ == '__main__':
         q = list(map(int, input().rstrip().split()))
         
         print(bubble_sort(q))
+# END main
