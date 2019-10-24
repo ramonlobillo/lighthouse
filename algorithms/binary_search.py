@@ -5,8 +5,8 @@
 # Input: list of sorted integers. Value to find.
 # Output: position of desired value in the input array.
 # * Complexity: 
-# How many times can you divide N by 2 until you have 1?
-# --> log2 (n)
+# How many times can you divide N by 2 until you have 1? 
+# 1 = N / 2^x --> O(log2 (n))
 #  
 # You can divide log N times until you have everything divided. 
 # Which means you have to divide log N ("do the binary search step") 
